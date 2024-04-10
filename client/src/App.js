@@ -8,12 +8,14 @@ import SingleEmployee from './features/employee/view/SingleEmployee';
 import FamiliesList from './features/family/list/FamiliesList';
 import AddFamily from './features/family/add/AddFamily';
 import SingleFamily from './features/family/view/SingleFamily';
+import LoginPage from './features/auth/login/LoginPage';
 function App() {
   return (
     <Router>
       <Routes>
         <Route path='/' element={<SiteLayout />}>
           <Route index element={<h1>site</h1>} />
+          <Route path='/login' element={<LoginPage />} />
           <Route path='/dash' element={<DashLayout />}>
             <Route index element={<h1>dash</h1>} />
             <Route path='employees' element={<Outlet />}>
