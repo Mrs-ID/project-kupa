@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt")
 
 const getAllFamilies = async (req, res) => {
     const family = await Family.find({}, { password: 0 }).populate("employee").lean()
+
     if (!family.length) {
         return res.status(400).json({
             error: true,
@@ -34,7 +35,7 @@ const getFamilyById = async (req, res) => {
 }
 
 const addFamily = async (req, res) => {
-    const { familyName, username, password, address, phone, email, marital_Status, bank_details, husband, wife, child } = req.body
+    const { employee, familyName, username, password, address, phone, email, marital_Status, bank_details, husband, wife, child } = req.body
     if (!familyName || !password || !username || !marital_Status || !bank_details) {
         return res.status(400).json({
             error: true,
@@ -51,7 +52,7 @@ const addFamily = async (req, res) => {
             data: null
         })
     }
-    const family = await Family.create({ familyName, username, password: hashPassword, address, phone, email, marital_Status, bank_details, husband, wife, child })
+    const family = await Family.create({ employee, familyName, username, password: hashPassword, address, phone, email, marital_Status, bank_details, husband, wife, child })
     if (!family) {
         return res.status(404).json({
             error: true,
@@ -70,7 +71,7 @@ const addFamily = async (req, res) => {
     })
 }
 const updateFamily = async (req, res) => {
-    const {id, familyName, username, password, address, phone, email, marital_Status, bank_details, husband, wife, child } = req.body
+    const { id, employee, familyName, username, password, address, phone, email, marital_Status, bank_details, husband, wife, child } = req.body
     if (!id) {
         return res.status(404).send("ID is required")
     }
@@ -99,6 +100,8 @@ const updateFamily = async (req, res) => {
             })
         }
     }
+
+    family.employee = employee
     family.familyName = familyName
     family.username = username
     family.address = address
