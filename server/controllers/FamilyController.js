@@ -35,11 +35,11 @@ const getFamilyById = async (req, res) => {
 }
 
 const addFamily = async (req, res) => {
-    const { employee, familyName, username, password, address, phone, email, marital_Status, bank_details, husband, wife, child } = req.body
-    if (!familyName || !password || !username || !marital_Status || !bank_details) {
+    const { employee, familyName, username, password, address, phone, email, marital_status, bank_details, husband, wife, child } = req.body
+    if (!familyName || !password || !username || !marital_status || !bank_details) {
         return res.status(400).json({
             error: true,
-            message: "name, username and password are required",
+            message: "name, username, password and marital_status are required",
             data: null
         })
     }
@@ -52,7 +52,7 @@ const addFamily = async (req, res) => {
             data: null
         })
     }
-    const family = await Family.create({ employee, familyName, username, password: hashPassword, address, phone, email, marital_Status, bank_details, husband, wife, child })
+    const family = await Family.create({ employee, familyName, username, password: hashPassword, address, phone, email, marital_status, bank_details, husband, wife, child })
     if (!family) {
         return res.status(404).json({
             error: true,
@@ -71,7 +71,7 @@ const addFamily = async (req, res) => {
     })
 }
 const updateFamily = async (req, res) => {
-    const { id, employee, familyName, username, password, address, phone, email, marital_Status, bank_details, husband, wife, child } = req.body
+    const { id, employee, familyName, username, password, address, phone, email, marital_status, bank_details, husband, wife, child } = req.body
     if (!id) {
         return res.status(404).send("ID is required")
     }
@@ -107,7 +107,7 @@ const updateFamily = async (req, res) => {
     family.address = address
     family.phone = phone
     family.email = email
-    family.marital_Status = marital_Status
+    family.marital_status = marital_status
     family.bank_details = bank_details
     family.husband = husband
     family.wife = wife

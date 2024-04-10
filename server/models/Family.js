@@ -39,7 +39,7 @@ const familySchema = new mongoose.Schema({
     //ניתן אפשרות לסמן כמה
     //אולי לכן זה לא צריך להיות אינום כי אפשר לבחור רק אחד
     //langugue: { type: String, enum: ["Hebrew", "English", "France", "Russit"] },
-    marital_Status: {
+    marital_status: {
         type: String,
         enum: ["נשוי/אה", "רווק/ה", "גרוש/ה", "פרוד/ה", "אלמן/נה"],
         required: true
