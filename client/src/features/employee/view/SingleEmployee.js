@@ -1,10 +1,11 @@
-import { useParams } from "react-router"
-import "./singleEmployee.css"
 import { useGetAllEmployeesQuery, useUpdateEmployeeMutation } from "../employeesApiSlice"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react"
 
+import "./singleEmployee.css"
+
 const SingleEmployee = () => {
+    
     const navigate = useNavigate()
     const { employeeId } = useParams()
     const { data: employeesObj, isError, error, isSuccess, isLoading } = useGetAllEmployeesQuery()
@@ -19,6 +20,7 @@ const SingleEmployee = () => {
         return <h1>Loading...</h1>
     if (isError)
         return <h1>{JSON.stringify(error)}</h1>
+        
     const employee = employeesObj.data.find(emp => emp._id === employeeId)
     if (!employee)
         return <h1>no found</h1>
