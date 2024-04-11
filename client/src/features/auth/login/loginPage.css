@@ -1,12 +1,12 @@
-.login-page{
-    width:100%;
+.login-page {
+    width: 100%;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.login-page-form{
+.login-page-form {
     background-color: var(--bgSoft);
     padding: 50px;
     border-radius: 10px;
@@ -16,10 +16,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap:30px
-
+    gap: 30px
 }
-.login-page-form input{
+
+.login-page-form input {
     width: 100%;
     padding: 30px;
     border: solid 2px #2e374a;
@@ -28,7 +28,7 @@
     color: var(--text)
 }
 
-.login-page-form button{
+.login-page-form button {
     width: 100%;
     padding: 30px;
     background-color: teal;
