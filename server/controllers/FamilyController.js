@@ -39,7 +39,7 @@ const addFamily = async (req, res) => {
     if (!familyName || !password || !username || !marital_status || !bank_details) {
         return res.status(400).json({
             error: true,
-            message: "name, username, password and marital_status are required",
+            message: "name, username, password, marital_status and bank_details are required",
             data: null
         })
     }

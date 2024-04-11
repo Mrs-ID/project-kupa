@@ -1,7 +1,16 @@
 import { MdDeselect, MdLogout, MdSearch } from "react-icons/md"
-import MenuLink from "./MenuLink"
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./sidebar.css"
+import MenuLink from "./MenuLink"
+import { useSendLogoutMutation } from "../../features/auth/authApiSlice";
+
 const SideBar = () => {
+
+    const [logout, { isSuccess }] = useSendLogoutMutation()
+    const navigate = useNavigate()
+
     const menuItems = [
         {
             title: "דפים",
@@ -48,6 +57,16 @@ const SideBar = () => {
         username: "username",
         fullname: "fullname"
     }
+
+    useEffect(() => {
+        if (isSuccess) {
+            navigate("/login")
+        }
+    }, [isSuccess])
+
+    const logoutClick = () => {
+        logout()
+    }
     return <div className="side-bar">
         <div className="side-bar-user">
             <div className="side-bar-user-details">
@@ -63,7 +82,7 @@ const SideBar = () => {
         </li>)
         )}
         </ul>
-        <button className="side-bar-logout">
+        <button onClick={logoutClick} className="side-bar-logout">
             <MdLogout />
             יציאה
         </button>
