@@ -24,7 +24,7 @@ const verifyJWT = (req, res, next) => {
 
             req.user = decode
             next()
-        
+
         })
 }
 module.exports = verifyJWT

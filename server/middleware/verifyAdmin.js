@@ -1,8 +1,8 @@
-const verifyAdmin=(req,res,next)=>{
-    if(req.user&&req.user.role==="מנהל"){
+const verifyAdmin = (req, res, next) => {
+    if (req.user && req.user.role === "מנהל") {
         next()
     }
-    else{
+    else {
         return res.status(401).json({
             error: true,
             message: "Unauthorized Admin",
